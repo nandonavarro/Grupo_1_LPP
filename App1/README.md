@@ -27,18 +27,18 @@ muestra a continuación, donde inventario.csv es el archivo en fortmato comma se
   ####################################################################
    inventario.csv                                                    #
   ####################################################################
-   |  titulo,autor,anio,estante_numero,estante_seccion,piso,         |
-   |      ,→ edificio,sede                                           |
-   |  "Structure and Interpretation of Computer Programs","Abelson,  |
-   |     ,→ Sussman, and Sussman",1996,4,"Lenguajes de               |
-   |     ,→ Programacion",2,"B","Vina del Mar"                       |
-   | "Introduction to Algorithms","Thomas H. Cormen, Charles E.      |
-   |     ,→ Leiserson, Ronald L. Rivest, and Clifford Stein          |
-   |     ,→ ",2009,4,"Estructura de Datos y Algoritmos",1,"A","      |
-   |     ,→ Santiago"                                                |
-   | "Programming Language Pragmatics","Michael L. Scott, Morgan     |
-   |     ,→ Kaufman",2015,1,"Estructura de Datos y Algoritmos",1,"   |
-   |     ,→ B","Vina del Mar"                                        |
+     titulo,autor,anio,estante_numero,estante_seccion,piso,         
+         ,→ edificio,sede                                           
+     "Structure and Interpretation of Computer Programs","Abelson,  
+        ,→ Sussman, and Sussman",1996,4,"Lenguajes de               
+        ,→ Programacion",2,"B","Vina del Mar"                       
+    "Introduction to Algorithms","Thomas H. Cormen, Charles E.      
+        ,→ Leiserson, Ronald L. Rivest, and Clifford Stein          
+        ,→ ",2009,4,"Estructura de Datos y Algoritmos",1,"A","      
+        ,→ Santiago"                                                
+    "Programming Language Pragmatics","Michael L. Scott, Morgan     
+        ,→ Kaufman",2015,1,"Estructura de Datos y Algoritmos",1,"   
+        ,→ B","Vina del Mar"
     ##################################################################
 
 
