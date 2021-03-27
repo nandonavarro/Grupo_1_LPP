@@ -1,4 +1,4 @@
-extern struct struct_libro {
+extern struct libro {
   char titulo[75];
   char autor[50];
   int anio;
@@ -7,8 +7,9 @@ extern struct struct_libro {
   int piso;
   char edificio[1];
   char sede[20];
-} struct_libro;
+} libro;
 
-/*int row = 1;*/
-
-// struct struct_libro *info_libro;
+extern struct biblioteca {
+  struct libro* libro;
+  struct biblioteca* siguiente;
+} biblioteca;
