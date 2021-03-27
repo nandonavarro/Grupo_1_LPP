@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "struct_libro.h"
 
 struct libro_data {
@@ -76,28 +75,30 @@ int main(int argc, char **argv) {
 
   int flag = 1;
   int menu;
+
   while (flag) {
     printmenu();
     printf("\n");
     printf("Ingrese el número de la acción: ");
-    scanf("%d", menu);
+    scanf("%d", &menu);
 
-    if (menu == 1) {
+    switch (menu)
+    {
+    case 1:
       printf("esta en el menu 1");
-    }
-
-    /*Agregar/Quitar sede*/
-    else if (menu == 2) {
+      break;
+    
+    
+    case 2:
+      /*Agregar/Quitar sede*/
       printf("esta en el menu 2");
-    }
+      break;
 
-    /*Editar informacion de algun libro*/
-    else if (menu == 3) {
+    case 3:
       printf("esta en el menu 3");
-    }
+      break;
 
-    /*Agregar/Quitar seccion*/
-    else if (menu == 4) {
+    case 4:
       printf("¿Qué quiere hacer?\n");
       printf("1) agregar libro\n");
       printf("2) quitar libro\n");
@@ -109,7 +110,21 @@ int main(int argc, char **argv) {
       } else if (menu == 2) {
         /*funcion quitar libro*/
       }
+      break;
+
+    default:
+      break;
     }
+
+    
+
+    /*Editar informacion de algun libro*/
+    
+    
+
+    /*Agregar/Quitar seccion*/
+    
+    
 
     /*Agregar/Quitar piso*/
     else if (menu == 5) {
