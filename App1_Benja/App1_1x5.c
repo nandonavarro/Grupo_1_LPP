@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* NO VA A FUNCIONAR SI EL TITULO TIENE COMA EN EL NOMBRE*/
-
 struct struct_libro
 {
     char titulo[75];
@@ -41,7 +39,7 @@ int cuenta_lineas(FILE *libro_csv)
     return contador;
 }
 
-char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas) /* im having trouble here */
+char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas)
 {
     int i = 0;
     char buff[n_lineas];
