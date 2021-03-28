@@ -1,12 +1,12 @@
 extern struct libro {
-  char titulo[75];
-  char autor[50];
+  char* titulo[75];
+  char* autor[50];
   int anio;
   int estante_numero;
-  char estante_seccion[50];
+  char* estante_seccion[50];
   int piso;
-  char edificio[1];
-  char sede[20];
+  char* edificio[1];
+  char* sede[10];
 } libro;
 
 extern struct biblioteca {
