@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
     
 
     /*Agregar/Quitar piso*/
-    else if (menu == 5) {
+    if (menu == 5) {
       printf("esta en el menu 5\n");
     }
 
