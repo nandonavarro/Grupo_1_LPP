@@ -51,12 +51,38 @@ char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas) /* 
         int field_count = 0;
         if (n_lineas == 1)
             continue;
+
+        int commas = 0;
+
+        if (*buff == '"')
+        {
+            int index = 1;
+            while (*(buff + index) != '"')
+            {
+
+                if (*(buff + index) == ',')
+                {
+                    ++commas;
+                }
+                ++index;
+            }
+        }
+
         char *field = strtok(buff, ",");
 
         while (field)
         {
+
             if (field_count == 0)
+            {
                 strcpy(values[i].titulo, field);
+                while (commas--)
+                {
+                    field = strtok(NULL, ",");
+                    strcat(values[i].titulo, field);
+                }
+            }
+
             if (field_count == 1)
                 strcpy(values[i].autor, field);
             if (field_count == 2)
@@ -87,7 +113,8 @@ int main()
     rewind(libro_csv);
     struct struct_libro values[arr_size];
     f_populate(libro_csv, values, arr_size);
-    printf("name %s\n", values[0].titulo);
+
+    printf("Nombre del titulo: %s\n", values[0].titulo);
 
     return 0;
 }
