@@ -52,6 +52,7 @@ char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas) /* 
         if (n_lineas == 1)
             continue;
         char *field = strtok(buff, ",");
+
         while (field)
         {
             if (field_count == 0)
