@@ -29,7 +29,7 @@ int cuenta_lineas(FILE *libro_csv)
     }
     return contador;
 }
-
+char line[1024];
 int main()
 {
     FILE *libro_csv = read_file();
@@ -38,13 +38,16 @@ int main()
     printf("tamano del array: %i\n", arr_size);
     
     struct struct_libro info_libro[arr_size+1];
-
+    rewind(libro_csv);
     char line[1024];
+    fgets(line, 1024, libro_csv);
     char *delimiter = ",";
-    fgets(line, 200, (FILE *)libro_csv);
+    
     int i = 0;
 
-    printf("%c este es\n", line[6]);
+    printf("%c este es\n", line[100]);
+    fgets(line, 200, (FILE *)libro_csv);
+    printf("este no");
     while (fgets(line, 200, (FILE *)libro_csv) != NULL)
     {
         

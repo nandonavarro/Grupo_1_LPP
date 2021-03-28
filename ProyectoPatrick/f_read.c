@@ -15,16 +15,16 @@ const char* getfield(char* line, int num)
     return NULL;
 }
 
-int main()
-{
+int main(){
     FILE* stream = fopen("ejemplo.csv", "r");
 
     char line[1024];
-    while (fgets(line, 1024, stream))
-    {
+    while (fgets(line, 1024, stream)){
         char* tmp = strdup(line);
-        printf("Field 3 would be %s\n", getfield(tmp, 3));
+        printf("%s",tmp);
+        //printf("Field 3 would be %s\n", getfield(tmp, 3));
         // NOTE strtok clobbers tmp
         free(tmp);
     }
+    return 0;
 }
