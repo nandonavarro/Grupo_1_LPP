@@ -7,107 +7,110 @@
 
 struct struct_libro
 {
-    char titulo[75];
-    char autor[50];
-    int anio;
-    int estante_numero;
-    char estante_seccion[50];
-    int piso;
-    char edificio[1];
-    char sede[20];
+  char titulo[75];
+  char autor[50];
+  int anio;
+  int estante_numero;
+  char estante_seccion[50];
+  int piso;
+  char edificio[1];
+  char sede[20];
 } struct_libro;
 
-FILE *read_file(void){
-    FILE *archivo_csv = fopen("ejemplo.csv", "r");
-    if (archivo_csv == NULL)
-    {
-        printf("el archivo no pudo ser abierto");
-        exit(1);
-    }
+FILE *read_file(void)
+{
+  FILE *archivo_csv = fopen("ejemplo.csv", "r");
+  if (archivo_csv == NULL)
+  {
+    printf("el archivo no pudo ser abierto");
+    exit(1);
+  }
 
-    return archivo_csv;
+  return archivo_csv;
 }
 
-int cuenta_lineas(FILE *libro_csv){
-    int contador = 0;
-    for (char c = fgetc(libro_csv); c != EOF; c = fgetc(libro_csv))
+int cuenta_lineas(FILE *libro_csv)
+{
+  int contador = 0;
+  for (char c = fgetc(libro_csv); c != EOF; c = fgetc(libro_csv))
+  {
+    if (c == '\n')
     {
-        if (c == '\n')
-        {
-            contador++;
-        }
+      contador++;
     }
-    return contador;
+  }
+  return contador;
 }
 
-char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas) /* im having trouble here */{
-    int i = 0;
-    char buff[n_lineas];
-    fgets(buff, 200, (FILE *)libro_csv);
-    while (fgets(buff, n_lineas, libro_csv))
+char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas) /* im having trouble here */
+{
+  int i = 0;
+  char buff[n_lineas];
+  fgets(buff, 200, (FILE *)libro_csv);
+  while (fgets(buff, n_lineas, libro_csv))
+  {
+    int field_count = 0;
+    if (n_lineas == 1)
+      continue;
+
+    int commas = 0;
+
+    if (*buff == '"')
     {
-        int field_count = 0;
-        if (n_lineas == 1)
-            continue;
+      int index = 1;
+      while (*(buff + index) != '"')
+      {
 
-        int commas = 0;
-
-        if (*buff == '"')
+        if (*(buff + index) == ',')
         {
-            int index = 1;
-            while (*(buff + index) != '"')
-            {
-
-                if (*(buff + index) == ',')
-                {
-                    ++commas;
-                }
-                ++index;
-            }
+          ++commas;
         }
-
-        char *field = strtok(buff, ",");
-
-        while (field)
-        {
-
-            if (field_count == 0)
-            {
-                strcpy(values[i].titulo, field);
-                while (commas--)
-                {
-                    field = strtok(NULL, ",");
-                    strcat(values[i].titulo, field);
-                }
-            }
-
-            if (field_count == 1)
-                strcpy(values[i].autor, field);
-            if (field_count == 2)
-                values[i].anio = atoi(field);
-            if (field_count == 3)
-                values[i].estante_numero = atoi(field);
-            if (field_count == 4)
-                strcpy(values[i].estante_seccion, field);
-            if (field_count == 5)
-                values[i].piso = atoi(field);
-            if (field_count == 6)
-                strcpy(values[i].edificio, field);
-            if (field_count == 7)
-                strcpy(values[i].sede, field);
-            field = strtok(NULL, ",");
-            field_count++;
-        }
-        i++;
+        ++index;
+      }
     }
-    return 0;
-}
 
+    char *field = strtok(buff, ",");
+
+    while (field)
+    {
+
+      if (field_count == 0)
+      {
+        strcpy(values[i].titulo, field);
+        while (commas--)
+        {
+          field = strtok(NULL, ",");
+          strcat(values[i].titulo, field);
+        }
+      }
+
+      if (field_count == 1)
+        strcpy(values[i].autor, field);
+      if (field_count == 2)
+        values[i].anio = atoi(field);
+      if (field_count == 3)
+        values[i].estante_numero = atoi(field);
+      if (field_count == 4)
+        strcpy(values[i].estante_seccion, field);
+      if (field_count == 5)
+        values[i].piso = atoi(field);
+      if (field_count == 6)
+        strcpy(values[i].edificio, field);
+      if (field_count == 7)
+        strcpy(values[i].sede, field);
+      field = strtok(NULL, ",");
+      field_count++;
+    }
+    i++;
+  }
+  return 0;
+}
 
 //Menú principal
-void printmenu() { 
+void printmenu()
+{
   printf("Bienvenido/a a la Biblioteca UAI. ¿Qué desea hacer?\n");
-  
+
   printf("   1. ¿Deseas agregar algo?\n");
   printf("   2. ¿Deseas quitar algo?\n");
   printf("   3. ¿Deseas editar algo de algun libro?\n");
@@ -116,9 +119,10 @@ void printmenu() {
 }
 
 //Submenu 1
-void print_agregar_cosas(){
+void print_agregar_cosas()
+{
   printf("¿Qué desea agregar?\n");
-  
+
   printf("   1. Agregar un libro a la Bibloteca\n");
   printf("   2. Agregar una sede\n");
   printf("   3. Agregar secciones\n");
@@ -126,7 +130,8 @@ void print_agregar_cosas(){
 }
 
 //Submenu 2
-void print_quitar_cosas(){
+void print_quitar_cosas()
+{
   printf("¿Qué desea quitar?\n");
 
   printf("   1. Quitar un libro de la Biblioteca\n");
@@ -136,23 +141,22 @@ void print_quitar_cosas(){
 }
 
 //Submenu 3
-void print_editar_libro(){// A qué se refiere con editar
+void print_editar_libro()
+{ // A qué se refiere con editar
   printf("¿Que campo quiere editar?\n");
-  printf("   1. Cambiar el titulo de un libro\n"); 
+  printf("   1. Cambiar el titulo de un libro\n");
   printf("   2. Cambiar la seccion de un libro\n");
   printf("   3. Cambiar el piso del libro\n");
   printf("   4. Cambiar la sede del libro\n");
   printf("   5. Cambiar el autor de un libro\n");
   printf("   6. Cambiar el año de un libro\n");
   printf("   7. Cambiar el el numero del estante de un libro\n");
-  
+
   //titulo,autor,anio,estante_numero,estante_seccion,piso,edificio,sede
-  
 }
 
-
-
-void agregar_libro() {
+void agregar_libro()
+{
   struct struct_libro libro;
 
   printf("Ingrese el titulo del libro: ");
@@ -205,29 +209,31 @@ char editarlibro(struct struct_libro values[], int arr_size){
 }
 */
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   FILE *libro_csv = read_file();
   int arr_size = cuenta_lineas(libro_csv);
   printf("tamano del array: %i\n", arr_size);
   rewind(libro_csv);
-  printf("alo");
+  printf("alo\n");
   struct struct_libro values[arr_size];
   f_populate(libro_csv, values, arr_size);
 
   printf("Nombre del titulo: %s\n", values[0].titulo);
 
-
   int flag = 1;
   int menu;
 
-  while (flag) {
+  while (flag)
+  {
     printmenu();
     printf("\n");
     printf("Ingrese el número de la acción: ");
     scanf("%d", &menu);
 
-    switch (menu) {
-    case 1: 
+    switch (menu)
+    {
+    case 1:
       print_agregar_cosas();
       scanf("Ingrese su opción %d", &menu);
       // if (menu==1) agregar_libro();
@@ -235,7 +241,7 @@ int main(int argc, char **argv) {
       // if (menu==3) agregar_secciones();
       // if (menu==4) agrega_piso();
       break;
-    
+
     case 2:
       print_quitar_cosas();
       scanf("Ingrese su opción %d", &menu);
@@ -248,10 +254,10 @@ int main(int argc, char **argv) {
     case 3:
       print_editar_libro();
       scanf("Ingrese su opción %d", &menu);
-      
+
       //Falta editar esto para incluir el nombre del archivo y escoger el campo a editar.
       //editarlibr();
-      
+
       break;
 
     case 4:
@@ -265,7 +271,6 @@ int main(int argc, char **argv) {
     default:
       break;
     }
-
   }
 
   return 0;
