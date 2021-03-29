@@ -13,7 +13,7 @@ struct struct_libro
     int estante_numero;
     char estante_seccion[50];
     int piso;
-    char edificio[1];
+    char edificio[25];
     char sede[20];
 } struct_libro;
 
@@ -190,20 +190,20 @@ void agregar_libro() {
 // int buscar_libro(struct libro_data libro);
 // int inventario(struct libro_data libro);
 
-/*
-char editarlibro(struct struct_libro values[], int arr_size){
-    char titulo[100];
-    printf("para editar un libro, ingrese el titulo: \n");
-    scanf("%99[^\n]", titulo);
-    for (int i = 0; i<= arr_size; i++ ){
-        
-        if(strcmp(titulo, values[i].titulo) == 0){
-            printf("%d\n", i);
-        }
-    }
 
+int buscarlibro(struct struct_libro values[], int arr_size){
+  char titulo[100];
+  int fila;
+  printf("para editar un libro, ingrese el titulo: \n");
+  scanf("%s", titulo);
+  for (int i = 0; i<= arr_size; i++ ){
+      if(strcmp(titulo, values[i].titulo) == 0){
+          printf("%d\n", i);
+          fila = i;
+      }
+  }
+  return fila;
 }
-*/
 
 int main(int argc, char **argv) {
   FILE *libro_csv = read_file();
@@ -250,12 +250,23 @@ int main(int argc, char **argv) {
       scanf("Ingrese su opción %d", &menu);
       
       //Falta editar esto para incluir el nombre del archivo y escoger el campo a editar.
-      //editarlibr();
+      //editarlibro(values[], arr_size);
       
       break;
 
-    case 4:
-      //buscarlibro();
+    case 4: ;
+      int fila;
+      fila = buscarlibro(values, arr_size);
+      printf("Título: %s\nAutor: %s\nAño: %d\nNº Estante: %d\nSección: %s\nPiso: %d\nEdificio: %s\nSede: %s\n", 
+        values[fila].titulo, 
+        values[fila].autor,
+        values[fila].anio,
+        values[fila].estante_numero,
+        values[fila].estante_seccion,
+        values[fila].piso,
+        values[fila].edificio,
+        values[fila].sede);
+      
       break;
 
     case 5:
