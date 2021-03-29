@@ -13,6 +13,7 @@ struct struct_libro
     char edificio[1];
     char sede[20];
 };
+int simon = 0;
 
 FILE *read_file(void)
 {
@@ -99,7 +100,9 @@ char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas) /* 
             field_count++;
         }
         i++;
+        ++simon;
     }
+
     return 0;
 }
 
@@ -121,28 +124,51 @@ void printmenu()
     printf("14. Salir\n");
 }
 
-void agregar_libro(struct struct_libro libro_agregado[])
+char agregar_libro(struct struct_libro libro_agregado[])
 {
+    int index = 0;
+    while (libro_agregado[index].titulo != NULL)
+    {
+        /* code */
+    }
 
-    printf("Ingrese el titulo del libro: ");
-    scanf("%[^\n]%*c", libro_agregado.titulo);
-    printf("ingrese autor del libro: ");
-    scanf("%[^\n]%*c", libro_agregado.autor);
-    printf("ingrese anio del libro: ");
-    scanf("%i\n", &libro_agregado.anio);
-    printf("ingrese el numero del estante en donde se encuentra el libro: ");
-    scanf("%i\n", &libro_agregado.estante_numero);
-    printf("ingrese la seccion en la cual se encuentra el libro: ");
-    scanf("%[^\n]%*c", libro_agregado.estante_seccion);
-    printf("\ningrese el piso del edificio en donde se encuentra el libro: ");
-    scanf("%i\n", &libro_agregado.piso);
-    printf("ingrese la letra del edificio en donde se encuentra el libro: ");
-    scanf("%[^\n]%*c", libro_agregado.edificio);
-    printf("ingrese la sede en donde se encuentra el libro: ");
-    scanf("%[^\n]%*c", libro_agregado.sede);
+    //cuantos libros quiere agregar?
+    printf("cuantos libros quiere agregar? ");
+    int n_a;
+    fgets(n_a, 10, stdin);
 
-    printf("Titulo: %s\n Autor: %s\n Anio: %i\n  ", libro.titulo, libro.autor,
-           libro.anio);
+    for (int p = 0; p < n_a; p++)
+    {
+
+        printf("Ingrese el titulo del libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Ingrese el autor del libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Ingrese el anio del libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Ingrese el numero del estante en donde se encuentra el libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Ingrese la seccion en la cual se encuentra el libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Ingrese el piso del edificio en donde se encuentra el libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Ingrese la letra del edificio en donde se encuentra el libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Ingrese la sede en donde se encuentra el libro: ");
+        fgets(libro_agregado[p].titulo, 30, stdin);
+
+        printf("Titulo: %s\n Autor: %s\n Anio: %i\n  ", libro_agregado[p].titulo, libro_agregado[p].autor,
+               libro_agregado[p].anio);
+    }
+
+    return 0;
 };
 
 int main(int argc, char **argv)
@@ -158,74 +184,75 @@ int main(int argc, char **argv)
 
     int flag = 1;
     int menu;
-    struct struct_libro libro_agregado[1024];
+    struct struct_libro libro_agregado2[1024];
+    if (libro_agregado2[0].titulo == 0)
+        printf("cualquierwea");
 
-    while (flag)
-    {
-        printmenu();
-        printf("\n");
-        printf("Ingrese el número de la acción: ");
-        scanf("%d", &menu);
+    //     while (flag)
+    //     {
+    //         printmenu();
+    //         printf("\n");
+    //         printf("Ingrese el número de la acción: ");
+    //         scanf("%d", &menu);
 
-        switch (menu)
-        {
-        case 1:
-            printf("esta en el menu 1");
-            break;
+    //         switch (menu)
+    //         {
+    //         case 1:
+    //             printf("esta en el menu 1");
+    //             break;
 
-        case 2:
-            /*Agregar/Quitar sede*/
-            printf("esta en el menu 2");
-            break;
+    //         case 2:
+    //             /*Agregar/Quitar sede*/
+    //             printf("esta en el menu 2");
+    //             break;
 
-        case 3:
-            printf("esta en el menu 3");
-            break;
+    //         case 3:
+    //             printf("esta en el menu 3");
+    //             break;
 
-        case 4:
-            printf("¿Qué quiere hacer?\n");
-            printf("1) agregar libro\n");
-            printf("2) quitar libro\n");
-            printf("Ingrese su opción: ");
-            scanf("%d", &menu);
+    //         case 4:
+    //             printf("¿Qué quiere hacer?\n");
+    //             printf("1) agregar libro\n");
+    //             printf("2) quitar libro\n");
+    //             printf("Ingrese su opción: ");
+    //             scanf("%d", &menu);
 
-            if (menu == 1)
-            {
-                agregar_libro(libro_agregado);
-            }
-            else if (menu == 2)
-            {
-                /*funcion quitar libro*/
-            }
-            break;
+    //             if (menu == 1)
+    //             {
+    //                 agregar_libro(libro_agregado);
+    //             }
+    //             else if (menu == 2)
+    //             {
+    //                 /*funcion quitar libro*/
+    //             }
+    //             break;
 
-        default:
-            break;
-        }
+    //         default:
+    //             break;
+    //         }
 
-        /*Editar informacion de algun libro*/
+    //         /*Editar informacion de algun libro*/
 
-        /*Agregar/Quitar seccion*/
+    //         /*Agregar/Quitar seccion*/
 
-        /*Agregar/Quitar piso*/
-        else if (menu == 5)
-        {
-            printf("esta en el menu 5\n");
-        }
+    //         /*Agregar/Quitar piso*/
+    //         else if (menu == 5)
+    //         {
+    //             printf("esta en el menu 5\n");
+    //         }
 
-        /*Buscar un Libro*/
-        else if (menu == 6)
-        {
-            printf("esta en el menu 6");
-        }
+    //         /*Buscar un Libro*/
+    //         else if (menu == 6)
+    //         {
+    //             printf("esta en el menu 6");
+    //         }
 
-        /*Salir del sistema*/
-        else
-        {
-            printf("esta en el menu 7");
-            // escribir break en vez
-        }
-    }
-
+    //         /*Salir del sistema*/
+    //         else
+    //         {
+    //             printf("esta en el menu 7");
+    //             // escribir break en vez
+    //         }
+    //     }
     return 0;
 }
