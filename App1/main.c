@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "struct_libro.h"
+//#include "struct_libro.h"
 
 /* NO VA A FUNCIONAR SI EL TITULO TIENE COMA EN EL NOMBRE*/
 
@@ -15,7 +15,7 @@ struct struct_libro
     int piso;
     char edificio[1];
     char sede[20];
-};
+} struct_libro;
 
 FILE *read_file(void){
     FILE *archivo_csv = fopen("ejemplo.csv", "r");
@@ -103,25 +103,10 @@ char f_populate(FILE *libro_csv, struct struct_libro values[], int n_lineas) /* 
     return 0;
 }
 
-int main(){
-    FILE *libro_csv = read_file();
-    int arr_size = cuenta_lineas(libro_csv);
-    printf("tamano del array: %i\n", arr_size);
-    rewind(libro_csv);
-    struct struct_libro values[arr_size];
-    f_populate(libro_csv, values, arr_size);
-
-    printf("Nombre del titulo: %s\n", values[0].titulo);
-
-    return 0;
-}
-
-//-------------------------------------------- Hasta acá código benja
-
 
 //Menú principal
 void printmenu() { 
-  prinf("Bienvenido/a a la Biblioteca UAI. ¿Qué desea hacer?\n");
+  printf("Bienvenido/a a la Biblioteca UAI. ¿Qué desea hacer?\n");
   
   printf("   1. ¿Deseas agregar algo?\n");
   printf("   2. ¿Deseas quitar algo?\n");
@@ -220,8 +205,18 @@ char editarlibro(struct struct_libro values[], int arr_size){
 }
 */
 
-
 int main(int argc, char **argv) {
+  FILE *libro_csv = read_file();
+  int arr_size = cuenta_lineas(libro_csv);
+  printf("tamano del array: %i\n", arr_size);
+  rewind(libro_csv);
+  printf("alo");
+  struct struct_libro values[arr_size];
+  f_populate(libro_csv, values, arr_size);
+
+  printf("Nombre del titulo: %s\n", values[0].titulo);
+
+
   int flag = 1;
   int menu;
 
